@@ -21,7 +21,9 @@ class GFG {
 	    
 	    int flag=0;
 	    int n = a.length;
-//	    for(Map.Entry<Integer, Integer> entry : hm.entrySet())  #INSTEAD OF WRITING THIS WE CAN ALSO WRITE LINE 24:
+	    
+// for(Map.Entry<Integer, Integer> entry : hm.entrySet())  #INSTEAD OF WRITING THIS WE CAN ALSO WRITE LINE 24:
+
         for(int i=0;i<a.length;i++)
 	    {
 	        if(hm.get(a[i])>=(n+1)/2)  
