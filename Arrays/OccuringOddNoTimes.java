@@ -1,6 +1,4 @@
-//BY USING HASHMAP
-//TIME COMPLEXITY: O(n)
-//SPACE COMPLEXITY: O(n)
+// Method 1: BY USING HASHMAP
 
 import java.io.*;
 import java.util.*;
@@ -36,6 +34,8 @@ class GFG {
      }
 }     
 
+//TIME COMPLEXITY: O(n)
+//SPACE COMPLEXITY: O(n)
 
 // Method 2 : More efficient than above code
 //  XOR Operation
