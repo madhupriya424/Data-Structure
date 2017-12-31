@@ -5,7 +5,7 @@
 - [using adjacency List]()
 
 ## **2. DFS Traversals**
-- [using adjacency Matrix]()
+- [using adjacency Matrix](https://github.com/madhupriya424/Data-Structure/blob/master/Graph/GraphMatrixDFS.java)
 - [using adjacency List]()
 
 ## **3. Spanning Trees**
