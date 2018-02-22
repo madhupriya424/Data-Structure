@@ -42,6 +42,18 @@ class BinaryTree {
     }
     
      // 40 15 25 4 11 10 15 -1 -1 -1 -1 -1 -1 -1 -1
+     
+     // 1 2 3 4 -1 5 6 -1 -1 -1 -1 -1 7 -1 8 -1 -1
+    /*                    1
+                       / \
+                      2   3
+                     /    / \
+                    4    5    6
+                               \
+                                7
+                                 \
+                                  8
+    */ *7	
 	public static void main (String[] args) {
 	    BinaryTree tree = new BinaryTree();
 	    tree.root = new Node(40);
