@@ -81,3 +81,8 @@ class RatMaze {
             System.out.println("Solution doesn't exist!");
 	}
 }
+
+#  1 0 0 0 
+1 1 0 0 
+0 1 1 1 
+0 0 0 1 
