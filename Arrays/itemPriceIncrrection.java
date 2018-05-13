@@ -45,3 +45,38 @@ rice 18.99
 cheese 400.89
  
  @2
+	
+==============================================================================================================================
+	
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static int VerifyItems(String origItems[], float origPrices[], String items[], float prices[])
+	{ 
+	    int count=0;
+	    HashMap<String, Float> h= new HashMap<>();
+	    for(int i=0;i<origPrices.length;i++)
+	        h.put(origItems[i], origPrices[i]);
+	    
+	    for(int i=0;i<prices.length;i++)
+	    {
+	        if(h.containsKey(items[i]) && (h.get(items[i])!=prices[i]))
+	        {
+	            count++;
+	        }
+	    }
+	    return count;
+	}
+	public static void main (String[] args) {
+	    String origItems[]={"rice", "sugar", "wheat", "cheese"};
+	    float origPrices[]={16.89f, 56.92f, 20.89f, 345.99f};
+	    String items[]={"rice", "cheese"};
+	    float prices[]={18.99f, 400.89f};
+	    int count=VerifyItems(origItems, origPrices, items, prices);
+		System.out.println(count);
+	}
+}	
+	
