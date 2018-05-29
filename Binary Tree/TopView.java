@@ -1,6 +1,6 @@
 /*package whatever //do not write package name here */
 Note:
-minus left horiontal_distance from root, add right horiontal_distance from root and store on hashmap if it is not contains .
+minus left horiontal_distance from root, add right horiontal_distance from root and store on hashmap if the horiontal_distance  is not contains in treeMap. .
 import java.io.*;
 import java.util.*;
 
