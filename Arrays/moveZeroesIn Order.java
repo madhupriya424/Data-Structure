@@ -37,3 +37,29 @@ class Solution {
         }
     }
 }
+
+---------------------------------------------------------------------------------------------------
+    
+    More Efficient:
+class Solution {
+    public void moveZeroes(int[] nums) {
+    int pushToLastZeros=0;
+    for(int i=0;i<nums.length;i++){
+        if(nums[i]!=0){
+            nums[pushToLastZeros++]=nums[i];
+        }
+    }
+
+    for(int i=pushToLastZeros;i<nums.length;i++){
+        nums[i]=0;
+    } 
+        
+    for(int i=0;i<nums.length;i++){     
+        System.out.print(nums[i]+" ");
+    }
+}
+}
+
+Space Complexity : O(1)O(1). Only constant space is used.
+
+Time Complexity: O(n)O(n). However, the total number of operations are still sub-optimal. The total operations (array writes) that code does is nn (Total number of elements).
