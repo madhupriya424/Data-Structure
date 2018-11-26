@@ -63,4 +63,68 @@ class GraphMatrixBfs {
 	}
 }
 
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+import java.util.*;
+
+public class Solution {
+	
+   static class Graph{
+     int n; // vertices
+     int matrix[][];
+     
+     Graph(int n){
+       this.n = n;
+       matrix = new int[n][n];
+     }
+     
+     public void addEdge(int u, int v){
+       matrix[u][v]=1;
+       matrix[v][u]=1;
+     }
+     
+     
+     
+     public void bfs(int source){
+       Queue<Integer> q = new LinkedList<>();
+       q.add(source);
+       
+       boolean visited[] = new boolean[n];
+       visited[source]=true;
+       
+       while(!q.isEmpty()){
+         
+         int current = q.remove();
+         System.out.print(current+" ");
+         
+         for(int i=0;i<n;i++){
+           
+         if(matrix[current][i]==1 && !visited[i]){
+           	q.add(i);
+         	 visited[i]=true;
+         	}
+         }   
+       }
+     }
+   }
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int V = s.nextInt();
+		int E = s.nextInt();
+		
+      Graph g = new Graph(V);
+      
+      	for(int i=0;i<E;i++){
+          int u = s.nextInt();
+          int v = s.nextInt();
+          g.addEdge(u, v);
+        }
+          
+		g.bfs(0);
+       
+	}
+}
+
 # 0 1 4 2 3
