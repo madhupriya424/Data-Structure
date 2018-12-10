@@ -66,3 +66,52 @@ class Solution {
             numIslands(i, j+1, grid, visited);   
          }   
     }
+--------------------------------------------------------------------------------------------------------------------------------
+    
+ class Solution {
+    
+    public static boolean isSafe(int i, int j, boolean[][] matrix){
+        int m = matrix.length;
+        int n = matrix[0].length;
+        
+        if(i >=0 && i<m && j>=0 && j<n)
+            return true;
+        return false;
+    }
+    
+    public static void dfs(int i, int j, char[][] grid, boolean[][] visited){
+        if(isSafe(i,j,visited) && grid[i][j] == '1' && !visited[i][j]){
+            visited[i][j] = true;
+            
+            //left
+            dfs(i,j-1, grid, visited);
+            
+            //right
+            dfs(i,j+1,grid, visited);
+            
+            //down
+            dfs(i+1, j, grid, visited);
+            
+            //up
+            dfs(i-1,j, grid, visited);
+        }
+    }
+    
+    public int numIslands(char[][] grid) {
+        
+        if(grid.length == 0)
+            return 0;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        int count = 0;
+        
+        for(int i = 0; i<grid.length; i++){
+            for(int j = 0;j<grid[i].length;j++){
+                if(!visited[i][j] && grid[i][j] == '1'){
+                    dfs(i,j, grid, visited);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}   
