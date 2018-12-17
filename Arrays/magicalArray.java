@@ -1,129 +1,116 @@
-/*package whatever //do not write package name here */
-
-import java.io.*;
+import java.util.*;
 
 class GFG {
     
     public static boolean isPrime(int n){
-        for(int i=2;i<n;i++){
-            if(i%n==0)
+        for(int i=2;i<=n/2;i++){
+            if(n%i==0)
                 return false;
         }
-        return true;;
+        return true;
     }
     
-    public static void binarySearch(int prime[], int a[], int k){
+    public static void binarySearch(int prime[], int a[], int k, int primeSize){
         
+        int res[] = new int[a.length];
+        int j=0;
         for(int i=0;i<a.length;i++)
         {
             int target = a[i];
             int start = 0;
-            int end = prime.length-1;
-            int j = 0;
-            while(start<end)
+            int end = primeSize;
+            boolean found = false;
+            
+            while(start<=end)
             {
                 int mid = (start+end)/2;
-                if(prime[mid]==tartget){
-                  res[j]=target-prime[mid];
+                
+                if(prime[mid]==target){
+                  res[j]=target-prime[mid]; 
                   j++;
+                  found=true; 
                   break;
                 }
-                else if(mid!=0 && target>prime[mid-1] && target<prime[mid]){
-                    res[j] = target- a[mid-1] < a[mid]-target ? (target- a[mid-1]) : (a[mid]-target);
-                }
-                else if(mid==0)
+                else if(target<=prime[0]){   //forFirst
+                        res[j] = prime[0]-target;  
+                        j++;
+                        found=true;
+                        break;
+                }    
+                else if(target>prime[primeSize-1]){  //forLast
+                        res[j] = target-prime[prime.length-1];  
+                        j++;
+                        found=true;
+                        break;
+                }        
+                else if(target < prime[mid])
+                       end = mid-1;
+                else if(target > prime[mid])
+                       start = mid+1;
             }
+           
+            if(!found){
+                res[j] = (prime[start]-target) > (target-prime[end]) ? (target-prime[end]) : (prime[start]-target);
+                  j++;
+            }
+            
         }
+        
+        //  for(int i=0;i<j;i++)
+        //      System.out.print(res[i]+" ");
+        
+        Arrays.sort(res);
+        
+        int sum=0;
+        int i=0;
+        while(k>0){
+            sum+=res[i];
+            i++;
+            k--;
+        }
+        
+       sum += (a.length) - i;
+        
+       System.out.println(sum);
+        
     }
     
 	public static void main (String[] args) {
+	    
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
 		int K = sc.nextInt();
-		int a[] = sc.nextInt();
+		int a[] = new int[N];
 		int max=0;
 		for(int i=0;i<N;i++){
 		    a[i] = sc.nextInt();
 		    int max1 = a[i];
 		    if(max<max1)
-		        max = a[i];
+		        max = max1;
 		}
 		
 		int prime[] = new int[max];
+		int j=0;
 		for(int i=2;i<=max;i++){
 		    if(isPrime(i)){
 		     prime[j]=i*i;
+		     j++;
 		}
 		}
+		int primeSize = j;
 		
-		Arrays.sort(prime);
+
+      //  System.out.print(j+" ");
 		
-		binarySearch(prime, a, K);
+		binarySearch(prime, a, K, primeSize);
 		
 		//System.out.println("GfG!");
 	}
 }
 
-
-
-// Java program to find GCD of two or 
-// more numbers 
-import java.util.*;
-
-public class GCD { 
-	// Function to return gcd of a and b 
-	static int gcd(int a, int b) 
-	{ 
-		if (a == 0) 
-			return b; 
-		return gcd(b % a, a); 
-	} 
-
-	// Function to find gcd of array of 
-	// numbers 
-	static int findGCD(int arr[], int n, int k) 
-	{ 
-      HashMap<Integer, Integer> hm = new HashMap<>();
-      
-      //int res[] = new int[n];
-		int j=0;
-       int op = 0;
-      for(int i = 0; i < n; i++){ 
-			int res = (gcd(arr[i], 3));
-            if(res==3)
-          		k--;
-           else{
-              hm.put(j, res);
-             j++;
-           }
-            //System.out.print(res[i]+" ");
-        }
-     
-      int div =1;
-      while(k>0){
-      	while(k>0 && hm.containsValue(div)){
-          
-          int key = hm.getKey();
-          //int val = hm.getValue();
-          hm.remove(key);
-          op+=div;
-          k--;
-        }
-        div++;
-      }
-      
-      op+=hm.size();
-		return op; 
-	} 
-
-	public static void main(String[] args) 
-	{ 
-		int arr[] = { 1, 4, 8, 10, 15 }; 
-		int n = arr.length;
-      
-        System.out.print(findGCD(arr, n, 3));
-        
-	} 
-} 
-
-// This code is contributed by Saket Kumar 
+////////////////////////////////
+5 3
+1 4 10 8 15
+	
+o/p:
+4
