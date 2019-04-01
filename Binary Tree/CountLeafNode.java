@@ -45,5 +45,22 @@ class BinaryTree {
 		System.out.println(CountLeafNode(tree.root));
 	}
 }
-
+----------------------------------------------------------------------------------------------------------------------------
+class GfG
+{
+    int countLeaves(Node node) 
+    {
+        if(node==null)
+            return 0;
+        
+        int left = countLeaves(node.left);    
+        int right = countLeaves(node.right);
+        
+        if(left==0 && right==0)
+            return 1;
+        
+        return left+right;    
+    }
+}	
+	
 # 3
