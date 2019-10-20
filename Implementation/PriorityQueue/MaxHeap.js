@@ -40,10 +40,12 @@ class MaxPriorityQueue {
         
         int parentIndex = getParent(index);
         
-        int temp = arr[index];
-        arr[index] = arr[parentIndex];
-        arr[parentIndex] = temp;
-        bubbleUp(parentIndex);
+	 if(arr[parentIndex] < arr[index]){   
+		int temp = arr[index];
+		arr[index] = arr[parentIndex];
+		arr[parentIndex] = temp;
+		bubbleUp(parentIndex);
+	 }		 
     }
     
     //peek
@@ -91,6 +93,9 @@ class MaxPriorityQueue {
     }*/
     
      private void bubbleDown(int index){
+	if(index >= size)
+		return;
+	     
         int lc = 2 * index + 1;
         int rc = 2 * index + 2;
         int largest = index;
