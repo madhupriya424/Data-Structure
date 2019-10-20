@@ -1,6 +1,5 @@
 
 
-
 /*package whatever //do not write package name here */
 
 import java.io.*;
@@ -29,30 +28,27 @@ class MinPriorityQueue {
         size++;
     }
     
+    public int getParent(int index){
+        if(index%2 == 0)
+            return index/2-1;
+        return index/2;    
+    }
+    
     public void bubbleUp(int index){
         if(index == 0)
             return;
         
-        if(index % 2 == 0){
+        int parentIndex = getParent(index);
+        
+        if(arr[parentIndex] > arr[index]){
             
-            if(arr[index/2-1] > arr[index]){
-                // swap
-                int temp = arr[index/2-1];
-                arr[index/2-1] = arr[index];
-                arr[index] = temp;
-                
-                bubbleUp(index/2-1);
-            }
-        }else{
-            if(arr[index/2] > arr[index]){
-                // swap
-                int temp = arr[index/2];
-                arr[index/2] = arr[index];
-                arr[index] = temp;
-                
-                bubbleUp(index/2);
-            }
+            int temp = arr[parentIndex];
+            arr[parentIndex] = arr[index];
+            arr[index] = temp;
+            
+            bubbleUp(parentIndex);
         }    
+         
     }
     
     //peek
@@ -79,23 +75,24 @@ class MinPriorityQueue {
     public void bubbleDown(int index){
         if(index == size)
             return;
-        
-        if(arr[(2*index)] > arr[(2*index)+1]){
-        
-            //swap
-            int temp = arr[(2*index)+1];
-            arr[(2*index)+1] = arr[(2*index)];
-            arr[(2*index)] = temp;
             
-            bubbleDown(arr[(2*index)+1]);
-        }    
-        else if(arr[(2*index)] > arr[(2*index)+2]){
+        int lc = 2*index + 1;
+        int rc = 2*index + 2;
+        
+        int largest = index;
+        
+        if(lc < size && arr[largest] > arr[lc])
+            largest = lc;
+        if(rc < size && arr[largest] > arr[rc])
+            largest = rc;
+        
+        if(largest != index){
             //swap
-            int temp = arr[(2*index)];
-            arr[(2*index)] = arr[(2*index)+2];
-            arr[(2*index)+2] = temp;
+            int temp = arr[index];
+            arr[index] = arr[largest];
+            arr[largest] = temp;
             
-            bubbleDown(arr[(2*index)+2]);
+        bubbleDown(largest);
         }
     }
     
@@ -127,7 +124,7 @@ class MinPriorityQueue {
 	}
 }
 
-//
+Output:
 2
 1
 2
